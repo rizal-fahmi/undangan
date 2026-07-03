@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px; height: 630px; overflow: hidden;
+      background: linear-gradient(135deg, #0d2b1f 0%, #1e4d38 50%, #0d2b1f 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Georgia', serif;
+      position: relative;
+    }
+    .dots {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(116,180,155,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .frame {
+      position: absolute; inset: 50px;
+      border: 1.5px solid rgba(116,180,155,0.2);
+      border-radius: 40px;
+    }
+    .frame-inner {
+      position: absolute; inset: 68px;
+      border: 1px dashed rgba(116,180,155,0.1);
+      border-radius: 32px;
+    }
+    .content {
+      position: relative; z-index: 10;
+      text-align: center; color: #f0faf5;
+    }
+    .label {
+      font-size: 13px; letter-spacing: 8px; color: rgba(116,180,155,0.7);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 24px; opacity: 0.4;
+    }
+    .ornament-line { width: 80px; height: 1px; background: #74b49b; }
+    .name {
+      font-size: 90px; font-weight: bold; letter-spacing: 12px;
+      color: #f0faf5; line-height: 1; text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .amp {
+      font-size: 46px; color: rgba(116,180,155,0.6); margin: 8px 0; display: block;
+    }
+    .divider {
+      width: 320px; height: 1px; background: rgba(116,180,155,0.25);
+      margin: 24px auto 20px;
+    }
+    .date {
+      font-size: 18px; letter-spacing: 4px; color: rgba(116,180,155,0.65);
+      text-transform: uppercase;
+    }
+    .location {
+      font-size: 15px; letter-spacing: 2px; color: rgba(116,180,155,0.45);
+      margin-top: 8px;
+    }
+    .corner { position: absolute; font-size: 28px; color: rgba(116,180,155,0.2); }
+    .tl { top: 95px; left: 110px; }
+    .tr { top: 95px; right: 110px; }
+    .bl { bottom: 85px; left: 110px; }
+    .br { bottom: 85px; right: 110px; }
+  </style>
+</head>
+<body>
+  <div class="dots"></div>
+  <div class="frame"></div>
+  <div class="frame-inner"></div>
+  <span class="corner tl">✦</span>
+  <span class="corner tr">✦</span>
+  <span class="corner bl">✦</span>
+  <span class="corner br">✦</span>
+  <div class="content">
+    <p class="label">Walimatul 'Ursy</p>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <span style="color:rgba(116,180,155,0.5)">◆</span>
+      <div class="ornament-line"></div>
+    </div>
+    <p class="name">FAHMI</p>
+    <span class="amp">&amp;</span>
+    <p class="name">UTIA</p>
+    <div class="divider"></div>
+    <p class="date">Minggu, 19 Juli 2026</p>
+    <p class="location">Pidie, Aceh · Indonesia</p>
+  </div>
+  <script>
+    // Petunjuk: buka file ini di browser, screenshot 1200x630px, save sebagai og-cover.jpg
+    console.log('Screenshot halaman ini ukuran 1200x630 lalu save sebagai og-cover.jpg');
+    console.log('Letakkan di folder assets/images/');
+  </script>
+</body>
+</html>

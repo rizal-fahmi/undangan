@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0d2b1f"/>
+      <stop offset="50%"  stop-color="#1e4d38"/>
+      <stop offset="100%" stop-color="#0d2b1f"/>
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#74b49b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#52936e" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle dot pattern -->
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="rgba(116,180,155,0.08)"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Center frame (oval-ish decorative border) -->
+  <rect x="80" y="50" width="1040" height="530" rx="40" ry="40"
+        fill="none" stroke="rgba(116,180,155,0.2)" stroke-width="1.5"/>
+  <rect x="100" y="68" width="1000" height="494" rx="32" ry="32"
+        fill="none" stroke="rgba(116,180,155,0.1)" stroke-width="1" stroke-dasharray="6 4"/>
+
+  <!-- Top ornament line -->
+  <line x1="440" y1="165" x2="560" y2="165" stroke="rgba(116,180,155,0.4)" stroke-width="1"/>
+  <circle cx="600" cy="165" r="3" fill="rgba(116,180,155,0.5)"/>
+  <line x1="640" y1="165" x2="760" y2="165" stroke="rgba(116,180,155,0.4)" stroke-width="1"/>
+
+  <!-- Label top -->
+  <text x="600" y="145" text-anchor="middle" font-family="Georgia, serif"
+        font-size="13" fill="rgba(116,180,155,0.7)" letter-spacing="8">WALIMATUL 'URSY</text>
+
+  <!-- Names -->
+  <text x="600" y="270" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="88" font-weight="bold" fill="#f0faf5" letter-spacing="12">FAHMI</text>
+
+  <!-- Ampersand -->
+  <text x="600" y="340" text-anchor="middle"
+        font-family="Georgia, serif" font-size="44"
+        fill="rgba(116,180,155,0.6)" letter-spacing="0">&amp;</text>
+
+  <text x="600" y="430" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="88" font-weight="bold" fill="#f0faf5" letter-spacing="12">UTIA</text>
+
+  <!-- Bottom divider -->
+  <line x1="400" y1="462" x2="800" y2="462" stroke="rgba(116,180,155,0.25)" stroke-width="1"/>
+
+  <!-- Date -->
+  <text x="600" y="495" text-anchor="middle"
+        font-family="Georgia, serif" font-size="18"
+        fill="rgba(116,180,155,0.65)" letter-spacing="4">MINGGU, 19 JULI 2026</text>
+
+  <!-- Location -->
+  <text x="600" y="528" text-anchor="middle"
+        font-family="Georgia, serif" font-size="15"
+        fill="rgba(116,180,155,0.45)" letter-spacing="2">Pidie, Aceh</text>
+
+  <!-- Corner ornaments -->
+  <text x="120" y="130" font-family="Georgia" font-size="28" fill="rgba(116,180,155,0.2)">✦</text>
+  <text x="1046" y="130" font-family="Georgia" font-size="28" fill="rgba(116,180,155,0.2)">✦</text>
+  <text x="120" y="580" font-family="Georgia" font-size="28" fill="rgba(116,180,155,0.2)">✦</text>
+  <text x="1046" y="580" font-family="Georgia" font-size="28" fill="rgba(116,180,155,0.2)">✦</text>
+</svg>
