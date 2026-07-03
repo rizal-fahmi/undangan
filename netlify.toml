@@ -1,0 +1,44 @@
+[build]
+  publish = "."
+
+# Inject environment variables ke browser via window.ENV
+# Netlify mengganti placeholder [[env.VAR]] dengan nilai aslinya saat build
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    # Content-Security-Policy bisa ditambahkan di sini nanti
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/assets/music/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Redirect /generate-undangan → halaman generator
+[[redirects]]
+  from = "/generate-undangan"
+  to   = "/generate-undangan/index.html"
+  status = 200
+
+# SPA fallback — semua route ke index.html kecuali file yang ada
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200

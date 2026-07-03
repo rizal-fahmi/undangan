@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#7c2d42">
+  <title>Undangan Pernikahan — Fahmi &amp; Utia</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel:   ['Cinzel', 'serif'],
+            playfair: ['Playfair Display', 'serif'],
+            inter:    ['Inter', 'sans-serif'],
+            hand:     ['Great Vibes', 'cursive'],
+          },
+          colors: {
+            // New warm cohesive palette
+            bg:       '#faf7f4',
+            accent:   { warm: '#c9956c', deep: '#7c2d42', soft: '#e8d5c4' },
+            text:     { dark: '#1c1917', mid: '#78716c' },
+            // Legacy aliases kept for existing JS/HTML references
+            ink: {
+              DEFAULT: '#1c1917', soft: '#2d2d2d', muted: '#78716c',
+              light: '#a8a29e', ghost: '#d6d3d1'
+            },
+            paper: {
+              DEFAULT: '#ffffff', warm: '#faf7f4', cream: '#f5f0eb',
+              border: '#e8d5c4'
+            },
+            mauve:  { DEFAULT: '#7c2d42', light: '#fdf0f3', border: '#e8c4b8' },
+            sage:   { DEFAULT: '#9CB090', light: '#B5C4B0', border: '#7D967D' },
+          },
+          animation: {
+            'spin-slow':    'spin 20s linear infinite',
+            'pulse-soft':   'pulseSoft 3s ease-in-out infinite',
+            'bounce-slow':  'bounceSlow 2.5s ease-in-out infinite',
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=Great+Vibes&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="mainBody" class="lock-scroll bg-[#faf7f4] font-inter text-[#1c1917] overflow-x-hidden relative">
+
+  <!-- Floating decorative particles -->
+  <div id="particlesContainer" class="fixed inset-0 pointer-events-none overflow-hidden z-10" aria-hidden="true"></div>
+
+  <!-- Background audio -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="assets/music/Wedding Nasheed - Muhammad Al Muqit.MP3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music control (bottom-right) -->
+  <div id="musicControl" class="fixed bottom-5 right-4 z-50 flex flex-col items-end gap-2">
+    <div id="volumePanel"
+      class="hidden flex-col items-center bg-[#1c1917]/90 backdrop-blur-sm rounded-2xl px-3 py-2 gap-2 mb-1">
+      <i class="fa-solid fa-volume-high text-white/60 text-[10px]"></i>
+      <input type="range" id="volumeSlider" min="0" max="100" step="5" aria-label="Volume musik">
+      <i class="fa-solid fa-volume-off text-white/40 text-[10px]"></i>
+    </div>
+    <button id="toggleMusicBtn" aria-label="Play musik" class="relative">
+      <i id="musicIcon" class="fa-solid fa-volume-xmark text-base"></i>
+    </button>
+  </div>
+
+  <!-- Cover screen — partials/cover.html injected here -->
+  <div id="coverScreen" class="fixed inset-0 z-50 bg-[#faf7f4] flex items-center justify-center overflow-y-auto transition-all duration-700"></div>
+
+  <!-- Main content — partials injected here -->
+  <main id="mainContent"
+    class="hidden opacity-0 transition-opacity duration-700 max-w-[430px] mx-auto min-h-screen bg-[#faf7f4] relative"></main>
+
+  <!-- Toast notification -->
+  <div id="customToast"
+    class="fixed top-5 inset-x-4 max-w-xs mx-auto bg-[#1c1917]/92 backdrop-blur-sm text-white text-[12px] px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 z-[100]"
+    role="alert" aria-live="polite">
+    <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-sm flex-shrink-0"></i>
+    <span id="toastText" class="font-inter">Berhasil!</span>
+  </div>
+
+  <script src="js/env.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

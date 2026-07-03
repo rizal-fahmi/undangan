@@ -1,0 +1,387 @@
+/* ===========================================
+   UNDANGAN DIGITAL — FAHMI & UTIA
+   Palette: bg #f7faf8 | green-dark #2d6a4f | green-mid #52936e | green-soft #74b49b
+            sage-border #c8dfd7 | dark #1a1f1c | mid-gray #5a6660
+   =========================================== */
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f7faf8;
+}
+
+/* Arabic font */
+.font-arabic { font-family: 'Amiri', 'Traditional Arabic', serif; direction: rtl; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #f7faf8; }
+::-webkit-scrollbar-thumb { background: #a8cec2; border-radius: 10px; }
+
+/* Lock scroll on cover */
+.lock-scroll { overflow: hidden; height: 100svh; }
+
+/* ============================================================
+   COVER
+   ============================================================ */
+#coverScreen { transition: opacity 0.85s cubic-bezier(0.4,0,0.2,1); }
+#coverScreen.cover-exit { opacity: 0; pointer-events: none; }
+
+.cover-frame {
+  background: linear-gradient(165deg, #ffffff 0%, #f0f7f4 100%);
+  border: 1.5px solid #c8dfd7;
+  border-radius: 160px 160px 20px 20px;
+  box-shadow: 0 8px 60px rgba(45,106,79,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+  position: relative;
+  overflow: hidden;
+}
+.cover-frame::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(82,147,110,0.18);
+  border-radius: 152px 152px 14px 14px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   HEADER FRAME  (dipakai section header)
+   ============================================================ */
+.header-frame {
+  background: linear-gradient(165deg, #ffffff 0%, #f0f7f4 100%);
+  border: 1.5px solid #c8dfd7;
+  border-radius: 160px 160px 20px 20px;
+  box-shadow: 0 4px 40px rgba(45,106,79,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+  position: relative;
+  overflow: hidden;
+}
+.header-frame::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(82,147,110,0.18);
+  border-radius: 152px 152px 14px 14px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   PATTERNS & LABELS
+   ============================================================ */
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(82,147,110,0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dot-pattern-light {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+              transform 0.85s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+
+/* ============================================================
+   PARTICLES
+   ============================================================ */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation: particleDrift linear infinite;
+  color: rgba(82,147,110,0.25);
+}
+@keyframes particleDrift {
+  0%   { transform: translateY(-10px) rotate(0deg);   opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 0.5; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
+
+/* ============================================================
+   COUPLE PHOTO FRAMES
+   ============================================================ */
+.couple-photo-frame {
+  width: 160px;
+  height: 210px;
+  border-radius: 80px 80px 20px 20px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+.couple-photo-groom {
+  border: 2.5px solid #52936e;
+  box-shadow: 0 8px 32px rgba(45,106,79,0.18), 0 2px 8px rgba(82,147,110,0.12);
+}
+.couple-photo-groom::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 75px 75px 16px 16px;
+  border: 1px dashed rgba(82,147,110,0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+.couple-photo-bride {
+  border: 2.5px solid #2d6a4f;
+  box-shadow: 0 8px 32px rgba(45,106,79,0.2), 0 2px 8px rgba(45,106,79,0.12);
+}
+.couple-photo-bride::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 75px 75px 16px 16px;
+  border: 1px dashed rgba(45,106,79,0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   EVENT CARDS
+   ============================================================ */
+.event-card {
+  border-radius: 20px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.event-card:active { transform: scale(0.99); }
+
+.event-texture-overlay {
+  position: absolute; inset: 0;
+  border-radius: 20px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none; z-index: 0;
+}
+
+/* Primary — Tueng Dara Baro: deep forest green */
+.event-card-primary {
+  background: linear-gradient(145deg, #1e4d38 0%, #2d6a4f 100%);
+  border: 1.5px solid rgba(116,180,155,0.25);
+  box-shadow: 0 12px 40px rgba(30,77,56,0.28), 0 2px 8px rgba(30,77,56,0.15);
+}
+.event-card-primary .card-icon-wrap { background: rgba(116,180,155,0.2); color: #74b49b; }
+.event-card-primary .card-label     { color: rgba(116,180,155,0.75); font-size: 9px; font-family: 'Cinzel',serif; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.event-card-primary .card-value     { color: #f0faf5; }
+.event-card-primary .card-sub       { color: rgba(240,250,245,0.55); }
+.event-card-primary .card-badge     { border-color: rgba(116,180,155,0.45); color: #a8d5c2; }
+.event-card-primary .card-divider   { background: rgba(255,255,255,0.12); }
+
+/* Secondary — Akad Nikah: soft white + green accent */
+.event-card-secondary {
+  background: #ffffff;
+  border: 1.5px solid #c8dfd7;
+  box-shadow: 0 4px 20px rgba(45,106,79,0.08);
+}
+.event-card-secondary .card-icon-wrap { background: #2d6a4f; color: #fff; }
+.event-card-secondary .card-label     { color: #52936e; font-size: 9px; font-family: 'Cinzel',serif; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.event-card-secondary .card-value     { color: #1a1f1c; }
+.event-card-secondary .card-sub       { color: #5a6660; }
+.event-card-secondary .card-badge     { border-color: rgba(45,106,79,0.25); color: #52936e; }
+.event-card-secondary .card-divider   { background: #c8dfd7; }
+
+/* ============================================================
+   COUNTDOWN
+   ============================================================ */
+.countdown-section {
+  background: linear-gradient(160deg, #0d2b1f 0%, #1e4d38 50%, #0d2b1f 100%);
+}
+.countdown-box {
+  background: rgba(116,180,155,0.1);
+  border: 1px solid rgba(116,180,155,0.2);
+  border-radius: 14px;
+  padding: 14px 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.countdown-box:active { transform: scale(0.96); background: rgba(116,180,155,0.18); }
+
+/* ============================================================
+   BANK CARDS
+   ============================================================ */
+.bank-bsi     { background: linear-gradient(135deg, #00623b 0%, #008c52 100%); }
+.bank-bni     { background: linear-gradient(135deg, #003b7a 0%, #0050a5 100%); }
+.bank-bca     { background: linear-gradient(135deg, #003d7c 0%, #0064c8 100%); }
+.bank-mandiri { background: linear-gradient(135deg, #003087 0%, #001f5c 100%); }
+.bank-ovo     { background: linear-gradient(135deg, #4c2f8c 0%, #7b4fba 100%); }
+.bank-dana    { background: linear-gradient(135deg, #118eea 0%, #2b9df4 100%); }
+.bank-gopay   { background: linear-gradient(135deg, #00aa5b 0%, #00cc6b 100%); }
+
+.bank-card {
+  border-radius: 20px; padding: 20px;
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  position: relative; overflow: hidden;
+}
+.bank-card::before {
+  content: ''; position: absolute;
+  top: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.06); border-radius: 50%;
+}
+.bank-card::after {
+  content: ''; position: absolute;
+  bottom: -20px; right: 20px;
+  width: 80px; height: 80px;
+  background: rgba(255,255,255,0.04); border-radius: 50%;
+}
+.bank-copy-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; border-radius: 12px; padding: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: background 0.2s ease, transform 0.15s ease;
+  cursor: pointer; font-family: 'Cinzel', serif;
+}
+.bank-copy-btn:active { transform: scale(0.97); background: rgba(255,255,255,0.25); }
+.btn-success { background: rgba(255,255,255,0.3) !important; }
+
+/* ============================================================
+   WISHES
+   ============================================================ */
+.wishes-list-container {
+  max-height: 340px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wishes-list-container::-webkit-scrollbar { width: 2px; }
+.wishes-list-container::-webkit-scrollbar-thumb { background: #a8cec2; border-radius: 4px; }
+
+.wish-card {
+  background: #fff;
+  border: 1px solid #c8dfd7;
+  border-radius: 14px;
+  padding: 12px 14px;
+  animation: wishFadeIn 0.45s ease forwards;
+  opacity: 0;
+  flex-shrink: 0;
+}
+@keyframes wishFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.wish-header {
+  display: flex; align-items: center;
+  gap: 8px; margin-bottom: 6px;
+}
+.wish-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: linear-gradient(135deg, #52936e, #1e4d38);
+  color: #fff; font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: 'Cinzel', serif;
+}
+.wish-name {
+  font-size: 12px; font-weight: 700;
+  color: #1a1f1c; flex: 1;
+  font-family: 'Playfair Display', serif;
+}
+.wish-time {
+  font-size: 9px; color: #8aada4;
+  font-family: 'Inter', sans-serif; flex-shrink: 0;
+}
+.wish-msg {
+  font-size: 12px; line-height: 1.6;
+  color: #3d4d47;
+  font-family: 'Inter', sans-serif;
+  padding-left: 38px;
+}
+.wishes-empty {
+  text-align: center; padding: 28px 16px;
+  font-size: 12px; color: #8aada4;
+  font-family: 'Inter', sans-serif;
+  background: #fff; border-radius: 14px;
+  border: 1px solid #c8dfd7;
+}
+
+/* ============================================================
+   MUSIC BUTTON
+   ============================================================ */
+#musicControl { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18)); }
+#toggleMusicBtn {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, #1e4d38 0%, #2d6a4f 100%);
+  border: 1.5px solid rgba(116,180,155,0.3);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform 0.2s ease; position: relative;
+}
+#toggleMusicBtn:active { transform: scale(0.92); }
+#toggleMusicBtn.music-playing::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1.5px solid rgba(116,180,155,0.4);
+  animation: musicRing 2s ease-in-out infinite;
+}
+@keyframes musicRing {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.25); opacity: 0; }
+}
+
+/* Volume slider */
+#volumeSlider {
+  -webkit-appearance: none; width: 64px; height: 3px;
+  border-radius: 2px; background: rgba(255,255,255,0.2);
+  outline: none; cursor: pointer;
+}
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 12px; height: 12px;
+  border-radius: 50%; background: #fff; cursor: pointer;
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+#customToast {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0; transform: translateY(-6px); pointer-events: none;
+}
+#customToast.toast-show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#customToast.toast-hide { opacity: 0; transform: translateY(-6px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer-section {
+  background: linear-gradient(170deg, #0d2b1f 0%, #1e4d38 55%, #0d2b1f 100%);
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes pulseSoft {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+.animate-pulse-soft { animation: pulseSoft 3s ease-in-out infinite; }
+
+@keyframes bounceSlow {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+.animate-bounce-slow { animation: bounceSlow 2.4s ease-in-out infinite; }

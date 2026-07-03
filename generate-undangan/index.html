@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator Link Undangan — Fahmi &amp; Utia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel:   ['Cinzel','serif'],
+            playfair: ['Playfair Display','serif'],
+            inter:    ['Inter','sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #f0f7f3; font-family: 'Inter', sans-serif; }
+    .card { background: #fff; border-radius: 16px; box-shadow: 0 2px 20px rgba(45,106,79,0.08); }
+    .btn-green { background: #2d6a4f; color: #fff; border-radius: 10px; padding: 10px 18px; font-weight: 600; font-size: 13px; transition: background .2s; cursor: pointer; border: none; }
+    .btn-green:hover { background: #1e4d38; }
+    .btn-outline { background: transparent; border: 1.5px solid #2d6a4f; color: #2d6a4f; border-radius: 10px; padding: 8px 14px; font-weight: 600; font-size: 12px; transition: all .2s; cursor: pointer; }
+    .btn-outline:hover { background: #2d6a4f; color: #fff; }
+    .btn-wa { background: #25d366; color: #fff; border-radius: 10px; padding: 8px 14px; font-weight: 600; font-size: 12px; transition: background .2s; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-wa:hover { background: #1da851; }
+    .link-row { background: #f7faf8; border: 1px solid #c8dfd7; border-radius: 12px; padding: 12px 14px; }
+    .link-text { font-size: 12px; color: #1a1f1c; word-break: break-all; font-family: 'Inter', monospace; }
+    .tag { display: inline-block; background: #e6f4ed; color: #2d6a4f; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+    input[type=text], textarea { border: 1.5px solid #c8dfd7; border-radius: 10px; padding: 10px 14px; font-size: 13px; width: 100%; outline: none; font-family: 'Inter', sans-serif; background: #f7faf8; color: #1a1f1c; transition: border .2s; }
+    input[type=text]:focus, textarea:focus { border-color: #52936e; background: #fff; box-shadow: 0 0 0 3px rgba(82,147,110,0.12); }
+    .result-item { border-bottom: 1px solid #e8f4ee; padding: 14px 0; }
+    .result-item:last-child { border-bottom: none; }
+    #toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #1a1f1c; color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13px; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 999; white-space: nowrap; }
+    #toast.show { opacity: 1; }
+    .copy-btn-inline { background: #e6f4ed; border: none; color: #2d6a4f; border-radius: 7px; padding: 5px 10px; font-size: 11px; font-weight: 600; cursor: pointer; transition: background .15s; white-space: nowrap; }
+    .copy-btn-inline:hover { background: #c8dfd7; }
+    .copy-btn-inline.copied { background: #2d6a4f; color: #fff; }
+  </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+
+  <div id="toast">Disalin!</div>
+
+  <div class="max-w-2xl mx-auto space-y-6">
+
+    <!-- Header -->
+    <div class="text-center space-y-2 py-4">
+      <p class="font-cinzel text-[10px] font-bold tracking-[0.5em] uppercase text-[#52936e]">Tools</p>
+      <h1 class="font-playfair text-[28px] font-bold text-[#1a1f1c]">Generator Undangan</h1>
+      <p class="font-inter text-[13px] text-[#5a6660]">Fahmi &amp; Utia · 19 Juli 2026</p>
+      <div class="h-px w-12 bg-[#c8dfd7] mx-auto mt-2"></div>
+    </div>
+
+    <!-- Input -->
+    <div class="card p-6 space-y-4">
+      <div class="flex items-center gap-2 mb-1">
+        <i class="fa-solid fa-users text-[#52936e]"></i>
+        <h2 class="font-cinzel font-bold text-[13px] tracking-wider text-[#1a1f1c] uppercase">Daftar Nama Tamu</h2>
+      </div>
+      <p class="text-[12px] text-[#5a6660]">Tulis satu nama per baris. Link undangan akan digenerate otomatis untuk setiap nama.</p>
+      <textarea id="guestInput" rows="10" placeholder="Teuku Abdullah&#10;Cut Rina&#10;Bapak Hasan&#10;Ibu Siti Aminah&#10;Keluarga Besar Azhari&#10;..."></textarea>
+      <div class="flex items-center gap-3 flex-wrap">
+        <button class="btn-green" onclick="generateLinks()">
+          <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Generate Link
+        </button>
+        <button class="btn-outline" onclick="clearAll()">
+          <i class="fa-solid fa-trash-can mr-1"></i> Hapus Semua
+        </button>
+        <button class="btn-outline" onclick="copyAllLinks()">
+          <i class="fa-solid fa-copy mr-1"></i> Salin Semua Link
+        </button>
+      </div>
+    </div>
+
+    <!-- Template WA -->
+    <div class="card p-6 space-y-3">
+      <div class="flex items-center gap-2 mb-1">
+        <i class="fa-brands fa-whatsapp text-[#25d366]"></i>
+        <h2 class="font-cinzel font-bold text-[13px] tracking-wider text-[#1a1f1c] uppercase">Template Pesan WhatsApp</h2>
+      </div>
+      <p class="text-[12px] text-[#5a6660]">Template ini akan dipakai saat klik tombol kirim WA. <code class="bg-[#e6f4ed] px-1 rounded text-[#2d6a4f]">{nama}</code> diganti otomatis dengan nama tamu, <code class="bg-[#e6f4ed] px-1 rounded text-[#2d6a4f]">{link}</code> diganti dengan link undangan.</p>
+      <textarea id="waTemplate" rows="6">Assalamu'alaikum Warahmatullahi Wabarakatuh 🌿
+
+Kepada Yth.
+Bapak/Ibu/Saudara/i *{nama}*
+
+Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara Walimatul 'Ursy kami:
+
+👰🤵 *Fahmi & Utia*
+📅 Minggu, 19 Juli 2026
+⏰ 10.00 WIB s.d. Selesai
+📍 Gampong Paloh Teungoh, Kec. Keumala, Kab. Pidie, Aceh
+
+Klik link undangan digital di bawah ini:
+🔗 {link}
+
+Kehadiran dan doa restu Bapak/Ibu/Saudara/i sangat berarti bagi kami.
+
+Wassalamu'alaikum Warahmatullahi Wabarakatuh 🤍</textarea>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsSection" class="card p-6 hidden">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-link text-[#52936e]"></i>
+          <h2 class="font-cinzel font-bold text-[13px] tracking-wider text-[#1a1f1c] uppercase">Hasil Generate</h2>
+          <span id="totalCount" class="tag">0 tamu</span>
+        </div>
+        <button class="copy-btn-inline" onclick="copyAllLinks()">
+          <i class="fa-solid fa-copy"></i> Salin Semua
+        </button>
+      </div>
+      <div id="resultsList" class="divide-y divide-[#e8f4ee]"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const BASE_URL = 'https://fahmi-utia.web.id';
+
+    function buildLink(name) {
+      return BASE_URL + '/?to=' + encodeURIComponent(name.trim());
+    }
+
+    function buildWaMessage(name, link) {
+      const template = document.getElementById('waTemplate').value;
+      return template.replace(/\{nama\}/g, name).replace(/\{link\}/g, link);
+    }
+
+    function buildWaUrl(name, link) {
+      return 'https://wa.me/?text=' + encodeURIComponent(buildWaMessage(name, link));
+    }
+
+    function generateLinks() {
+      const raw = document.getElementById('guestInput').value;
+      const names = raw.split('\n')
+        .map(n => n.trim())
+        .filter(n => n.length > 0);
+
+      if (names.length === 0) {
+        showToast('Tulis nama tamu dulu!');
+        return;
+      }
+
+      const list = document.getElementById('resultsList');
+      const section = document.getElementById('resultsSection');
+      const total = document.getElementById('totalCount');
+
+      total.textContent = names.length + ' tamu';
+      list.innerHTML = '';
+      section.classList.remove('hidden');
+
+      names.forEach((name, i) => {
+        const link = buildLink(name);
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-inter font-semibold text-[13px] text-[#1a1f1c] truncate">${escHtml(name)}</span>
+              </div>
+              <div class="flex items-center gap-2 bg-[#f7faf8] border border-[#c8dfd7] rounded-lg px-3 py-2">
+                <span class="link-text flex-1 truncate">${escHtml(link)}</span>
+                <button class="copy-btn-inline flex-shrink-0" onclick="copyLink('${escAttr(link)}', this)">
+                  <i class="fa-regular fa-copy"></i> Salin
+                </button>
+              </div>
+            </div>
+            <a href="${escAttr(buildWaUrl(name, link))}" target="_blank" rel="noopener noreferrer"
+              class="btn-wa flex-shrink-0 mt-0.5">
+              <i class="fa-brands fa-whatsapp"></i> Kirim WA
+            </a>
+          </div>`;
+        list.appendChild(div);
+      });
+
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function copyLink(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+      }).catch(() => fallbackCopy(text));
+      showToast('Link disalin!');
+    }
+
+    function copyAllLinks() {
+      const raw = document.getElementById('guestInput').value;
+      const names = raw.split('\n').map(n => n.trim()).filter(n => n.length > 0);
+      if (names.length === 0) { showToast('Generate dulu!'); return; }
+      const all = names.map(n => n + '\n' + buildLink(n)).join('\n\n');
+      navigator.clipboard.writeText(all).catch(() => fallbackCopy(all));
+      showToast('Semua link disalin (' + names.length + ' tamu)');
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      Object.assign(ta.style, { position:'fixed', opacity:'0' });
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+
+    function clearAll() {
+      document.getElementById('guestInput').value = '';
+      document.getElementById('resultsList').innerHTML = '';
+      document.getElementById('resultsSection').classList.add('hidden');
+    }
+
+    function escHtml(s) {
+      return String(s).replace(/[&<>"']/g, c =>
+        ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function escAttr(s) {
+      return String(s).replace(/"/g, '&quot;');
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    // Enter di textarea tidak generate (biar bisa newline), tapi Ctrl+Enter bisa
+    document.getElementById('guestInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.ctrlKey) generateLinks();
+    });
+  </script>
+</body>
+</html>
