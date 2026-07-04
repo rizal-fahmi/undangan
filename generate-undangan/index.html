@@ -277,7 +277,9 @@ Wassalamu'alaikum Warahmatullahi Wabarakatuh 🤍</textarea>
         const BASE_URL = 'https://fahmi-utia.web.id';
 
         function buildLink(name) {
-            return BASE_URL + '/?to=' + encodeURIComponent(name.trim());
+            // Ganti spasi dengan tanda hubung (-) agar URL bersih tanpa %20
+            const slug = name.trim().replace(/\s+/g, '-');
+            return BASE_URL + '/?to=' + encodeURIComponent(slug);
         }
 
         function buildWaMessage(name, link) {

@@ -6,10 +6,12 @@ import { startCountdown }            from './countdown.js';
 import { playMusic, initMusic }      from './music.js';
 import { initReveal, createParticles, copyText } from './ui.js';
 
-// ---- Guest name from URL param ?to=NamaTamu ----
+// ---- Guest name from URL param ?to=Nama-Tamu ----
 function getGuestName() {
   const p = new URLSearchParams(window.location.search).get('to');
-  return p ? decodeURIComponent(p) : 'Tamu Undangan';
+  if (!p) return 'Tamu Undangan';
+  // Ganti tanda hubung (-) jadi spasi untuk ditampilkan
+  return decodeURIComponent(p).replace(/-/g, ' ');
 }
 
 // ---- Open invitation ----
