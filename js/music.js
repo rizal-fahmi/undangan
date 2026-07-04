@@ -77,4 +77,16 @@ export function initMusic() {
       panel.classList.add('hidden');
     }
   });
+
+  // Pause otomatis saat tab/browser tidak aktif (khusus mobile)
+  // Di HP: saat browser di-minimize atau layar mati → musik berhenti
+  // Di desktop: tidak berpengaruh karena tab tetap aktif di background
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (isMobile) {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && playing) {
+        pauseMusic();
+      }
+    });
+  }
 }
